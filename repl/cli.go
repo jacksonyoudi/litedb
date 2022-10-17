@@ -50,6 +50,8 @@ func (cli *Cli) Run() {
 					panic(err)
 				}
 			}
+
+			os.Stdout.WriteString(cli.prompt + ">")
 		}
 
 	}
