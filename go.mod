@@ -1,3 +1,3 @@
 module github.com/jacksonyoudi/litedb
 
-go 1.185
+go 1.192

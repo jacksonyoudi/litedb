@@ -38,12 +38,15 @@ func (cli *Cli) Run() {
 					}
 				}
 				sql := buffer.ReadString()
-				_, err := os.Stdout.WriteString(sql)
-				if err != nil {
-					panic(err)
+				lowerSql := strings.ToLower(sql)
+
+				if strings.Contains(lowerSql, "exit") {
+					os.Stdout.WriteString("  byebye")
+					os.Exit(1)
 				}
-				fmt.Println("ok")
-				os.Exit(1)
+
+				// todo:
+
 			} else {
 				_, err := buffer.Write(line)
 				if err != nil {
@@ -51,7 +54,10 @@ func (cli *Cli) Run() {
 				}
 			}
 
-			os.Stdout.WriteString(cli.prompt + ">")
+			_, err := os.Stdout.WriteString(cli.prompt + ">")
+			if err != nil {
+				panic(err)
+			}
 		}
 
 	}
